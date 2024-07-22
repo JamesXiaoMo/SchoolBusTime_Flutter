@@ -1,0 +1,46 @@
+{
+  "@@locale": "en",
+  "title": "School Bus Time",
+  "nextBusTime": "Next school bus departure time: ",
+  "timeRemaining": "Time remaining: ",
+  "chooseLanguage": "Choose your language",
+  "appName": "School Bus Time",
+  "version": "Version: alpha 0.0.1",
+  "designedBy": "Designed by Jameswu in Fukuyama",
+  "english": "English",
+  "chinese": "Chinese",
+  "japanese": "Japanese",
+  "locationSelection":"Where would you like to ride the school bus from?",
+  "location1":"Matsunaga",
+  "location2":"University",
+  "@title": {
+    "description": "The title of the application"
+  },
+  "@nextBusTime": {
+    "description": "Label for the next bus departure time"
+  },
+  "@timeRemaining": {
+    "description": "Label for the remaining time until the next bus"
+  },
+  "@chooseLanguage": {
+    "description": "Label for the language selection option"
+  },
+  "@appName": {
+    "description": "The name of the application"
+  },
+  "@version": {
+    "description": "The version of the application"
+  },
+  "@designedBy": {
+    "description": "Design credit for the application"
+  },
+  "@english": {
+    "description": "Label for selecting the English language"
+  },
+  "@chinese": {
+    "description": "Label for selecting the Chinese language"
+  },
+  "@japanese": {
+    "description": "Label for selecting the Japanese language"
+  }
+}
