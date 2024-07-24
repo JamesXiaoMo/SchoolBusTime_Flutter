@@ -42,6 +42,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl:
+  # dart run intl_utils:generate
+
 
 flutter_icons:
   android: true

@@ -59,8 +59,8 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       theme: ThemeData(
-        primaryColor: Colors.green, // 主颜色
-        textTheme: _textTheme, // 使用不同字体
+        primaryColor: Colors.green,
+        textTheme: _textTheme,
       ),
       home: Builder(
         builder: (context) {
@@ -238,6 +238,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   }).toList(),
                 ),
               ),
+              TextButton(onPressed: () {},
+                  child: const Text("Check for upgrade"))
             ]
         ),
       ),
@@ -266,7 +268,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 20),
             SizedBox(
-              height: 30, // 设置进度条宽度
+              height: 30,
               child: FAProgressBar(
                 maxValue: 100,
                 changeColorValue: 25,
