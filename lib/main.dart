@@ -7,6 +7,7 @@ import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.da
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 import 'schedule_handle.dart';
+import 'specialthanksPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -238,8 +239,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   }).toList(),
                 ),
               ),
-              TextButton(onPressed: () {},
-                  child: const Text("Check for upgrade"))
+              TextButton(onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const SpecialThanksPage()),
+                  );
+              },
+                  child: const Text("Special thanks"))
             ]
         ),
       ),

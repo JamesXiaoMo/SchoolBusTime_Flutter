@@ -34,14 +34,14 @@ android {
 
     signingConfigs {
         release {
-            def keystorePropertiesFile = rootProject.file("key.properties")
-            def keystoreProperties = new Properties()
-            keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+//            def keystorePropertiesFile = rootProject.file("key.properties")
+//            def keystoreProperties = new Properties()
+//            keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+//
+//            keyAlias keystoreProperties['keyAlias']
+//            keyPassword keystoreProperties['keyPassword']
+//            storeFile file(keystoreProperties['storeFile'])
+//            storePassword keystoreProperties['storePassword']
         }
     }
 
@@ -70,6 +70,9 @@ android {
             ndk {
                 debugSymbolLevel 'FULL'
             }
+        }
+        debug {
+            signingConfig signingConfigs.debug
         }
     }
 }
