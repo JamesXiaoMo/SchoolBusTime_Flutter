@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
 
   void _setTextTheme() {
     if (_locale.languageCode == 'zh') {
-      _textTheme = GoogleFonts.zcoolXiaoWeiTextTheme();
+      _textTheme = GoogleFonts.notoSansTextTheme();
     } else if (_locale.languageCode == 'ja') {
       _textTheme = GoogleFonts.kosugiTextTheme();
     } else {
@@ -239,12 +239,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   }).toList(),
                 ),
               ),
-              TextButton(onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const SpecialThanksPage()),
-                  );
-              },
-                  child: const Text("Special thanks"))
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SpecialThanksPage()),
+                    );
+                  },
+                child: const Text("Thanks Page",),
+              )
             ]
         ),
       ),

@@ -35,6 +35,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "nextBusTime": MessageLookupByLibrary.simpleMessage("下一班校车发车时间: "),
         "timeRemaining": MessageLookupByLibrary.simpleMessage("剩余时间: "),
         "title": MessageLookupByLibrary.simpleMessage("校车时间"),
-        "version": MessageLookupByLibrary.simpleMessage("版本: alpha 0.0.1")
+        "version": MessageLookupByLibrary.simpleMessage("版本: alpha 0.0.2")
       };
 }

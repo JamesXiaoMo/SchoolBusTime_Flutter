@@ -36,6 +36,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "nextBusTime": MessageLookupByLibrary.simpleMessage("次のスクールバスの出発時間: "),
         "timeRemaining": MessageLookupByLibrary.simpleMessage("残り時間: "),
         "title": MessageLookupByLibrary.simpleMessage("スクールバスタイム"),
-        "version": MessageLookupByLibrary.simpleMessage("バージョン: alpha 0.0.1")
+        "version": MessageLookupByLibrary.simpleMessage("バージョン: alpha 0.0.2")
       };
 }
