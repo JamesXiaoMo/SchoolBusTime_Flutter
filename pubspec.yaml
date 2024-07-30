@@ -34,6 +34,7 @@ dependencies:
   http:
   google_fonts: ^6.2.1
   flutter_animation_progress_bar:
+  path_provider_foundation: ^2.4.0
 
 
   # The following adds the Cupertino Icons font to your application.

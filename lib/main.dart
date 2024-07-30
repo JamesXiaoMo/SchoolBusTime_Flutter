@@ -40,11 +40,27 @@ class _MyAppState extends State<MyApp> {
 
   void _setTextTheme() {
     if (_locale.languageCode == 'zh') {
-      _textTheme = GoogleFonts.notoSansTextTheme();
+      _textTheme = GoogleFonts.notoSansTextTheme().copyWith(
+        headlineLarge: GoogleFonts.notoSans(fontSize: 48, fontWeight: FontWeight.bold),
+        headlineMedium: GoogleFonts.notoSans(fontSize: 24.0, fontWeight: FontWeight.w600),
+        bodyLarge: GoogleFonts.notoSans(fontSize: 16.0),
+        labelLarge: GoogleFonts.notoSans(fontSize: 14.0),
+      );
+
     } else if (_locale.languageCode == 'ja') {
-      _textTheme = GoogleFonts.kosugiTextTheme();
+      _textTheme = GoogleFonts.kosugiTextTheme().copyWith(
+        headlineLarge: GoogleFonts.kosugi(fontSize: 32.0, fontWeight: FontWeight.bold),
+        headlineMedium: GoogleFonts.kosugi(fontSize: 24.0, fontWeight: FontWeight.w600),
+        bodyLarge: GoogleFonts.kosugi(fontSize: 16.0),
+        labelLarge: GoogleFonts.kosugi(fontSize: 14.0),
+      );;
     } else {
-      _textTheme = GoogleFonts.oswaldTextTheme();
+      _textTheme = GoogleFonts.oswaldTextTheme().copyWith(
+        headlineLarge: GoogleFonts.oswald(fontSize: 32.0, fontWeight: FontWeight.bold),
+        headlineMedium: GoogleFonts.oswald(fontSize: 24.0, fontWeight: FontWeight.w600),
+        bodyLarge: GoogleFonts.oswald(fontSize: 16.0),
+        labelLarge: GoogleFonts.oswald(fontSize: 14.0),
+      );;
     }
   }
 
@@ -249,86 +265,172 @@ class _MyHomePageState extends State<MyHomePage> {
             ]
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.all(16.0),
-        height: MediaQuery.of(context).size.height,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              S.of(context).nextBusTime,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            Text(
-              nextBusStr,
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-            const SizedBox(height: 20),
-            Text(
-              S.of(context).timeRemaining,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            Text(
-              countDownStr,
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              height: 30,
-              child: FAProgressBar(
-                maxValue: 100,
-                changeColorValue: 25,
-                changeProgressColor: Colors.green,
-                currentValue: (countDown / intervalTime * 100).toDouble(),
-                displayText: '%',
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                S.of(context).locationSelection,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: ListTile(
-                    title: Text(S.of(context).location1,
-                      style: Theme.of(context).textTheme.bodyLarge,),
-                    leading: Radio<int>(
-                      value: 1,
-                      groupValue: _selectedValue,
-                      onChanged: (int? value) {
-                        setState(() {
-                          _selectedValue = value;
-                        });
-                      },
-                    ),
-                  ),
+      body:
+        Center(
+          child:Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Card(
+                child: Column(
+                    children: [
+                        Text(
+                          S.of(context).nextBusTime,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          nextBusStr,
+                          style: Theme.of(context).textTheme.headlineLarge,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          S.of(context).timeRemaining,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          countDownStr,
+                          style: Theme.of(context).textTheme.headlineLarge,
+                        ),
+                        const SizedBox(height: 20),
+                        SizedBox(
+                          height: 30,
+                          child: FAProgressBar(
+                            maxValue: 100,
+                            changeColorValue: 25,
+                            changeProgressColor: Colors.green,
+                            currentValue: (countDown / intervalTime * 100).toDouble(),
+                            displayText: '%',
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            S.of(context).locationSelection,
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: ListTile(
+                                title: Text(S.of(context).location1,
+                                  style: Theme.of(context).textTheme.bodyLarge,),
+                                leading: Radio<int>(
+                                  value: 1,
+                                  groupValue: _selectedValue,
+                                  onChanged: (int? value) {
+                                    setState(() {
+                                      _selectedValue = value;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 20),
+                            Expanded(
+                              child: ListTile(
+                                title: Text(S.of(context).location2,
+                                  style: Theme.of(context).textTheme.bodyLarge,),
+                                leading: Radio<int>(
+                                  value: 2,
+                                  groupValue: _selectedValue,
+                                  onChanged: (int? value) {
+                                    setState(() {
+                                      _selectedValue = value;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                 ),
-                const SizedBox(width: 20), // 添加间距
-                Expanded(
-                  child: ListTile(
-                    title: Text(S.of(context).location2,
-                      style: Theme.of(context).textTheme.bodyLarge,),
-                    leading: Radio<int>(
-                      value: 2,
-                      groupValue: _selectedValue,
-                      onChanged: (int? value) {
-                        setState(() {
-                          _selectedValue = value;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+              )
+            ],
+          ),
+        )
+      // Container(
+      //   padding: const EdgeInsets.all(16.0),
+      //   height: MediaQuery.of(context).size.height,
+      //   child:
+      //   Column(
+      //     crossAxisAlignment: CrossAxisAlignment.start,
+      //     children: [
+      //       Text(
+      //         S.of(context).nextBusTime,
+      //         style: Theme.of(context).textTheme.bodyLarge,
+      //       ),
+      //       Text(
+      //         nextBusStr,
+      //         style: Theme.of(context).textTheme.headlineLarge,
+      //       ),
+      //       const SizedBox(height: 20),
+      //       Text(
+      //         S.of(context).timeRemaining,
+      //         style: Theme.of(context).textTheme.bodyLarge,
+      //       ),
+      //       Text(
+      //         countDownStr,
+      //         style: Theme.of(context).textTheme.headlineLarge,
+      //       ),
+      //       const SizedBox(height: 20),
+      //       SizedBox(
+      //         height: 30,
+      //         child: FAProgressBar(
+      //           maxValue: 100,
+      //           changeColorValue: 25,
+      //           changeProgressColor: Colors.green,
+      //           currentValue: (countDown / intervalTime * 100).toDouble(),
+      //           displayText: '%',
+      //         ),
+      //       ),
+      //       Align(
+      //         alignment: Alignment.centerLeft,
+      //         child: Text(
+      //           S.of(context).locationSelection,
+      //           style: Theme.of(context).textTheme.bodyLarge,
+      //         ),
+      //       ),
+      //       Row(
+      //         mainAxisAlignment: MainAxisAlignment.center,
+      //         children: [
+      //           Expanded(
+      //             child: ListTile(
+      //               title: Text(S.of(context).location1,
+      //                 style: Theme.of(context).textTheme.bodyLarge,),
+      //               leading: Radio<int>(
+      //                 value: 1,
+      //                 groupValue: _selectedValue,
+      //                 onChanged: (int? value) {
+      //                   setState(() {
+      //                     _selectedValue = value;
+      //                   });
+      //                 },
+      //               ),
+      //             ),
+      //           ),
+      //           const SizedBox(width: 20),
+      //           Expanded(
+      //             child: ListTile(
+      //               title: Text(S.of(context).location2,
+      //                 style: Theme.of(context).textTheme.bodyLarge,),
+      //               leading: Radio<int>(
+      //                 value: 2,
+      //                 groupValue: _selectedValue,
+      //                 onChanged: (int? value) {
+      //                   setState(() {
+      //                     _selectedValue = value;
+      //                   });
+      //                 },
+      //               ),
+      //             ),
+      //           ),
+      //         ],
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
