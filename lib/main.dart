@@ -24,7 +24,9 @@ class _MyAppState extends State<MyApp> {
   Locale _locale = window.locale;
   late TextTheme _textTheme;
 
+
   @override
+
   void initState() {
     super.initState();
     _locale = window.locale;
@@ -41,17 +43,20 @@ class _MyAppState extends State<MyApp> {
   void _setTextTheme() {
     if (_locale.languageCode == 'zh') {
       _textTheme = GoogleFonts.notoSansTextTheme().copyWith(
-        headlineLarge: GoogleFonts.notoSans(fontSize: 48, fontWeight: FontWeight.bold),
-        headlineMedium: GoogleFonts.notoSans(fontSize: 24.0, fontWeight: FontWeight.w600),
-        bodyLarge: GoogleFonts.notoSans(fontSize: 16.0),
+        headlineLarge: GoogleFonts.notoSans(fontSize: 54.0, fontWeight: FontWeight.bold),
+        headlineMedium: GoogleFonts.notoSans(fontSize: 24.0, fontWeight: FontWeight.w700),
+        headlineSmall: GoogleFonts.notoSans(fontSize: 36.0, fontWeight: FontWeight.w700),
+        bodyLarge: GoogleFonts.notoSans(fontSize: 24.0, fontWeight: FontWeight.w600),
+        bodyMedium: GoogleFonts.notoSans(fontSize: 18.0, fontWeight: FontWeight.w600),
         labelLarge: GoogleFonts.notoSans(fontSize: 14.0),
+
       );
 
     } else if (_locale.languageCode == 'ja') {
       _textTheme = GoogleFonts.kosugiTextTheme().copyWith(
         headlineLarge: GoogleFonts.kosugi(fontSize: 32.0, fontWeight: FontWeight.bold),
         headlineMedium: GoogleFonts.kosugi(fontSize: 24.0, fontWeight: FontWeight.w600),
-        bodyLarge: GoogleFonts.kosugi(fontSize: 16.0),
+        bodyLarge: GoogleFonts.kosugi(fontSize: 16.0, fontWeight: FontWeight.w900),
         labelLarge: GoogleFonts.kosugi(fontSize: 14.0),
       );;
     } else {
@@ -66,6 +71,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
       locale: _locale,
       supportedLocales: S.delegate.supportedLocales,
@@ -118,10 +124,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   late Timer _timer;
 
-  static const List<Widget> locations = <Widget>[
-    Text('松永'),
-    Text('福山大学')
-  ];
   final List<bool> _selectedLocation = <bool>[true, false];
 
   @override
@@ -204,11 +206,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> loadJSON() async {
-    jsonString = await rootBundle.loadString("assets/Schedule_V.24.7.20.json");
+    jsonString = await rootBundle.loadString("assets/Bus_Schedule_V.24.7.20.json");
   }
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    const List<Widget> locations = <Widget>[
+      Text('松永', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400)),
+      Text('福山大学', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
+    ];
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
@@ -226,7 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Image.asset('assets/app_logo.png'),
                 ),
                 Text(widget.title,
-                    style: Theme.of(context).textTheme.headlineLarge),
+                    style: Theme.of(context).textTheme.headlineSmall),
                 Text(
                   S.of(context).version,
                   style: Theme.of(context).textTheme.labelLarge,
@@ -276,156 +283,98 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Card(
-                margin: const EdgeInsets.symmetric(horizontal: 15.0),
-                elevation: 15.0,
-                child: Column(
-                  children: [
-                    Text(
-                      S.of(context).nextBusTime,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    Text(
-                      nextBusStr,
-                      style: Theme.of(context).textTheme.headlineLarge,
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      S.of(context).timeRemaining,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    Text(
-                      countDownStr,
-                      style: Theme.of(context).textTheme.headlineLarge,
-                    ),
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      height: 30,
-                      child: FAProgressBar(
-                        maxValue: 100,
-                        changeColorValue: 25,
-                        changeProgressColor: Colors.green,
-                        currentValue: (countDown / intervalTime * 100).toDouble(),
-                        displayText: '%',
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        S.of(context).locationSelection,
+              SizedBox(
+                width: (MediaQuery.of(context).size.width) * 0.95,
+                child: Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 5),
+                  elevation: 15.0,
+                  child: Column(
+                    children: [
+                      Text(
+                        "🚌${S.of(context).nextBusTime}",
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
-                    ),
-                    SizedBox(
-                      child: ToggleButtons(
-                        onPressed: (int index){
-                          setState(() {
-                            for(int i = 0; i < _selectedLocation.length; i++){
-                              _selectedLocation[i] = i == index;
-                            }
-                            _selectedLocation[0] == true ? _selectedValue = 1 : _selectedValue = 2;
-                          });
-                        },
-                        borderRadius: const BorderRadius.all(Radius.circular(8)),
-                        isSelected: _selectedLocation,
-                        selectedBorderColor: Colors.white,
-                        selectedColor: Colors.white,
-                        fillColor: Colors.green[400],
-                        color: Colors.green[600],
-                        constraints: const BoxConstraints(
-                          minHeight: 40,
-                          minWidth: 150,
-                        ),
-                        children: locations,
+                      Text(
+                        nextBusStr,
+                        style: Theme.of(context).textTheme.headlineLarge,
                       ),
-                    )
-                  ],
+                      const SizedBox(height: 20),
+                      Text(
+                        "⏳${S.of(context).timeRemaining}",
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      Text(
+                        countDownStr,
+                        style: Theme.of(context).textTheme.headlineLarge,
+                      ),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        height: 30,
+                        width: MediaQuery.of(context).size.width * 0.85,
+                        child: FAProgressBar(
+                          maxValue: 100,
+                          changeColorValue: 25,
+                          changeProgressColor: Colors.green,
+                          currentValue: (countDown / intervalTime * 100).toDouble(),
+                          displayText: '%',
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.85,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "📍${S.of(context).locationSelection}",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        child: ToggleButtons(
+                          onPressed: (int index){
+                            setState(() {
+                              for(int i = 0; i < _selectedLocation.length; i++){
+                                _selectedLocation[i] = i == index;
+                              }
+                              _selectedLocation[0] == true ? _selectedValue = 1 : _selectedValue = 2;
+                            });
+                          },
+                          borderRadius: const BorderRadius.all(Radius.circular(8)),
+                          isSelected: _selectedLocation,
+                          selectedBorderColor: Colors.white,
+                          selectedColor: Colors.white,
+                          fillColor: Colors.green[400],
+                          color: Colors.green[600],
+                          constraints: BoxConstraints(
+                            minHeight: 40,
+                            minWidth: (MediaQuery.of(context).size.width) * 0.425,
+                          ),
+                          children: locations,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              )
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: (MediaQuery.of(context).size.width * 0.95),
+                child: Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 5),
+                  elevation: 15.0,
+                  child: Column(
+                    children: [
+                      Text(
+                        "JR时间：正在新建文件夹...",
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         )
-      // Container(
-      //   padding: const EdgeInsets.all(16.0),
-      //   height: MediaQuery.of(context).size.height,
-      //   child:
-      //   Column(
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       Text(
-      //         S.of(context).nextBusTime,
-      //         style: Theme.of(context).textTheme.bodyLarge,
-      //       ),
-      //       Text(
-      //         nextBusStr,
-      //         style: Theme.of(context).textTheme.headlineLarge,
-      //       ),
-      //       const SizedBox(height: 20),
-      //       Text(
-      //         S.of(context).timeRemaining,
-      //         style: Theme.of(context).textTheme.bodyLarge,
-      //       ),
-      //       Text(
-      //         countDownStr,
-      //         style: Theme.of(context).textTheme.headlineLarge,
-      //       ),
-      //       const SizedBox(height: 20),
-      //       SizedBox(
-      //         height: 30,
-      //         child: FAProgressBar(
-      //           maxValue: 100,
-      //           changeColorValue: 25,
-      //           changeProgressColor: Colors.green,
-      //           currentValue: (countDown / intervalTime * 100).toDouble(),
-      //           displayText: '%',
-      //         ),
-      //       ),
-      //       Align(
-      //         alignment: Alignment.centerLeft,
-      //         child: Text(
-      //           S.of(context).locationSelection,
-      //           style: Theme.of(context).textTheme.bodyLarge,
-      //         ),
-      //       ),
-      //       Row(
-      //         mainAxisAlignment: MainAxisAlignment.center,
-      //         children: [
-      //           Expanded(
-      //             child: ListTile(
-      //               title: Text(S.of(context).location1,
-      //                 style: Theme.of(context).textTheme.bodyLarge,),
-      //               leading: Radio<int>(
-      //                 value: 1,
-      //                 groupValue: _selectedValue,
-      //                 onChanged: (int? value) {
-      //                   setState(() {
-      //                     _selectedValue = value;
-      //                   });
-      //                 },
-      //               ),
-      //             ),
-      //           ),
-      //           const SizedBox(width: 20),
-      //           Expanded(
-      //             child: ListTile(
-      //               title: Text(S.of(context).location2,
-      //                 style: Theme.of(context).textTheme.bodyLarge,),
-      //               leading: Radio<int>(
-      //                 value: 2,
-      //                 groupValue: _selectedValue,
-      //                 onChanged: (int? value) {
-      //                   setState(() {
-      //                     _selectedValue = value;
-      //                   });
-      //                 },
-      //               ),
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
