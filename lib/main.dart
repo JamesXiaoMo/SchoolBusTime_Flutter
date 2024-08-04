@@ -49,22 +49,25 @@ class _MyAppState extends State<MyApp> {
         bodyLarge: GoogleFonts.notoSans(fontSize: 24.0, fontWeight: FontWeight.w600),
         bodyMedium: GoogleFonts.notoSans(fontSize: 18.0, fontWeight: FontWeight.w600),
         labelLarge: GoogleFonts.notoSans(fontSize: 14.0),
-
       );
 
     } else if (_locale.languageCode == 'ja') {
       _textTheme = GoogleFonts.kosugiTextTheme().copyWith(
-        headlineLarge: GoogleFonts.kosugi(fontSize: 32.0, fontWeight: FontWeight.bold),
-        headlineMedium: GoogleFonts.kosugi(fontSize: 24.0, fontWeight: FontWeight.w600),
-        bodyLarge: GoogleFonts.kosugi(fontSize: 16.0, fontWeight: FontWeight.w900),
-        labelLarge: GoogleFonts.kosugi(fontSize: 14.0),
+        headlineLarge: GoogleFonts.notoSans(fontSize: 54.0, fontWeight: FontWeight.bold),
+        headlineMedium: GoogleFonts.notoSans(fontSize: 24.0, fontWeight: FontWeight.w700),
+        headlineSmall: GoogleFonts.notoSans(fontSize: 36.0, fontWeight: FontWeight.w700),
+        bodyLarge: GoogleFonts.notoSans(fontSize: 24.0, fontWeight: FontWeight.w600),
+        bodyMedium: GoogleFonts.notoSans(fontSize: 18.0, fontWeight: FontWeight.w600),
+        labelLarge: GoogleFonts.notoSans(fontSize: 14.0),
       );;
     } else {
       _textTheme = GoogleFonts.oswaldTextTheme().copyWith(
-        headlineLarge: GoogleFonts.oswald(fontSize: 32.0, fontWeight: FontWeight.bold),
-        headlineMedium: GoogleFonts.oswald(fontSize: 24.0, fontWeight: FontWeight.w600),
-        bodyLarge: GoogleFonts.oswald(fontSize: 16.0),
-        labelLarge: GoogleFonts.oswald(fontSize: 14.0),
+        headlineLarge: GoogleFonts.notoSans(fontSize: 54.0, fontWeight: FontWeight.bold),
+        headlineMedium: GoogleFonts.notoSans(fontSize: 24.0, fontWeight: FontWeight.w700),
+        headlineSmall: GoogleFonts.notoSans(fontSize: 36.0, fontWeight: FontWeight.w700),
+        bodyLarge: GoogleFonts.notoSans(fontSize: 20.0, fontWeight: FontWeight.w600),
+        bodyMedium: GoogleFonts.notoSans(fontSize: 18.0, fontWeight: FontWeight.w600),
+        labelLarge: GoogleFonts.notoSans(fontSize: 14.0),
       );;
     }
   }
@@ -212,9 +215,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    const List<Widget> locations = <Widget>[
-      Text('松永', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400)),
-      Text('福山大学', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
+    List<Widget> locations = <Widget>[
+      Text(S.of(context).location1, style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400)),
+      Text(S.of(context).location2, style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
     ];
     return Scaffold(
         appBar: AppBar(
@@ -365,7 +368,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     children: [
                       Text(
-                        "JR时间：正在新建文件夹...",
+                        "⚠️${S.of(context).jock}",
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ],

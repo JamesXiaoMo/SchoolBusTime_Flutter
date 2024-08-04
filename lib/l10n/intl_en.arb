@@ -5,7 +5,7 @@
   "timeRemaining": "Time remaining: ",
   "chooseLanguage": "Choose your language",
   "appName": "School Bus Time",
-  "version": "Version: alpha 0.0.2",
+  "version": "Version: beta 0.0.1",
   "designedBy": "Designed by Jameswu in Fukuyama",
   "english": "English",
   "chinese": "Chinese",
@@ -13,6 +13,7 @@
   "locationSelection":"Where would you like to ride the school bus from?",
   "location1":"Matsunaga",
   "location2":"University",
+  "jock": "Under Construction",
   "@title": {
     "description": "The title of the application"
   },

@@ -100,10 +100,10 @@ class S {
     );
   }
 
-  /// `Version: alpha 0.0.2`
+  /// `Version: beta 0.0.1`
   String get version {
     return Intl.message(
-      'Version: alpha 0.0.2',
+      'Version: beta 0.0.1',
       name: 'version',
       desc: 'The version of the application',
       args: [],
@@ -175,6 +175,16 @@ class S {
     return Intl.message(
       'University',
       name: 'location2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Under Construction`
+  String get jock {
+    return Intl.message(
+      'Under Construction',
+      name: 'jock',
       desc: '',
       args: [],
     );

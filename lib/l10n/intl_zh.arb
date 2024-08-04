@@ -5,7 +5,7 @@
   "timeRemaining": "剩余时间: ",
   "chooseLanguage": "选择语言",
   "appName": "校车时间",
-  "version": "版本: alpha 0.0.2",
+  "version": "版本: beta 0.0.1",
   "designedBy": "Designed by Jameswu in Fukuyama",
   "english": "英语",
   "chinese": "中文",
@@ -13,6 +13,7 @@
   "locationSelection":"想从哪里乘坐校车？",
   "location1":"松永",
   "location2":"福山大",
+  "jock": "正在施工",
   "@title": {
     "description": "应用程序的标题"
   },

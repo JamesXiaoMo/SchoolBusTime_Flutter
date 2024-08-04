@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Designed by Jameswu in Fukuyama"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "japanese": MessageLookupByLibrary.simpleMessage("Japanese"),
+        "jock": MessageLookupByLibrary.simpleMessage("Under Construction"),
         "location1": MessageLookupByLibrary.simpleMessage("Matsunaga"),
         "location2": MessageLookupByLibrary.simpleMessage("University"),
         "locationSelection": MessageLookupByLibrary.simpleMessage(
@@ -39,6 +40,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "timeRemaining":
             MessageLookupByLibrary.simpleMessage("Time remaining: "),
         "title": MessageLookupByLibrary.simpleMessage("School Bus Time"),
-        "version": MessageLookupByLibrary.simpleMessage("Version: alpha 0.0.2")
+        "version": MessageLookupByLibrary.simpleMessage("Version: beta 0.0.1")
       };
 }

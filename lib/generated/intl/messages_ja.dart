@@ -29,13 +29,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Designed by Jameswu in Fukuyama"),
         "english": MessageLookupByLibrary.simpleMessage("英語"),
         "japanese": MessageLookupByLibrary.simpleMessage("日本語"),
+        "jock": MessageLookupByLibrary.simpleMessage("工事中"),
         "location1": MessageLookupByLibrary.simpleMessage("松永"),
         "location2": MessageLookupByLibrary.simpleMessage("福大"),
         "locationSelection":
-            MessageLookupByLibrary.simpleMessage("どこからスクールバスに乗りたいですか？"),
+            MessageLookupByLibrary.simpleMessage("どこから乗りたいですか？"),
         "nextBusTime": MessageLookupByLibrary.simpleMessage("次のスクールバスの出発時間: "),
         "timeRemaining": MessageLookupByLibrary.simpleMessage("残り時間: "),
         "title": MessageLookupByLibrary.simpleMessage("スクールバスタイム"),
-        "version": MessageLookupByLibrary.simpleMessage("バージョン: alpha 0.0.2")
+        "version": MessageLookupByLibrary.simpleMessage("バージョン: beta 0.0.1")
       };
 }
