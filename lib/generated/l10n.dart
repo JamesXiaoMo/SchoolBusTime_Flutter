@@ -100,10 +100,10 @@ class S {
     );
   }
 
-  /// `Version: Beta 0.0.1`
+  /// `Version: 2.0.0`
   String get version {
     return Intl.message(
-      'Version: Beta 0.0.1',
+      'Version: 2.0.0',
       name: 'version',
       desc: 'The version of the application',
       args: [],

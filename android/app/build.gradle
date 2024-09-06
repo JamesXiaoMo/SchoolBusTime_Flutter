@@ -58,7 +58,7 @@ android {
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode 4
-        versionName "beta 0.0.1"
+        versionName "2.0.0"
     }
 
     buildTypes {
