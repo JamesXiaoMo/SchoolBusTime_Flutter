@@ -37,9 +37,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Where would you like to ride the school bus from?"),
         "nextBusTime": MessageLookupByLibrary.simpleMessage(
             "Next school bus departure time: "),
+        "specialthanks": MessageLookupByLibrary.simpleMessage("Special thanks"),
         "timeRemaining":
             MessageLookupByLibrary.simpleMessage("Time remaining: "),
         "title": MessageLookupByLibrary.simpleMessage("School Bus Time"),
-        "version": MessageLookupByLibrary.simpleMessage("Version: beta 0.0.1")
+        "version": MessageLookupByLibrary.simpleMessage("Version: Beta 0.0.1")
       };
 }

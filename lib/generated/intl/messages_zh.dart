@@ -34,8 +34,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "location2": MessageLookupByLibrary.simpleMessage("福山大"),
         "locationSelection": MessageLookupByLibrary.simpleMessage("想从哪里乘坐校车？"),
         "nextBusTime": MessageLookupByLibrary.simpleMessage("下一班校车发车时间: "),
+        "specialthanks": MessageLookupByLibrary.simpleMessage("特别鸣谢"),
         "timeRemaining": MessageLookupByLibrary.simpleMessage("剩余时间: "),
         "title": MessageLookupByLibrary.simpleMessage("校车时间"),
-        "version": MessageLookupByLibrary.simpleMessage("版本: beta 0.0.1")
+        "version": MessageLookupByLibrary.simpleMessage("版本: Beta 0.0.1")
       };
 }

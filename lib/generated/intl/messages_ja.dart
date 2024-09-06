@@ -35,8 +35,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "locationSelection":
             MessageLookupByLibrary.simpleMessage("どこから乗りたいですか？"),
         "nextBusTime": MessageLookupByLibrary.simpleMessage("次のスクールバスの出発時間: "),
+        "specialthanks": MessageLookupByLibrary.simpleMessage("特別感謝"),
         "timeRemaining": MessageLookupByLibrary.simpleMessage("残り時間: "),
         "title": MessageLookupByLibrary.simpleMessage("スクールバスタイム"),
-        "version": MessageLookupByLibrary.simpleMessage("バージョン: beta 0.0.1")
+        "version": MessageLookupByLibrary.simpleMessage("バージョン: Beta 0.0.1")
       };
 }

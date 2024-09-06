@@ -9,10 +9,17 @@ import 'generated/l10n.dart';
 import 'schedule_handle.dart';
 import 'specialthanksPage.dart';
 
+
+/*
+程序总入口
+ */
 void main() {
   runApp(const MyApp());
 }
 
+/*
+MyApp继承StatefulWidget类
+ */
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -20,19 +27,27 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+/*
+MyApp的状态
+ */
 class _MyAppState extends State<MyApp> {
   Locale _locale = window.locale;
   late TextTheme _textTheme;
 
-
   @override
 
+  /*
+  初始化状态
+   */
   void initState() {
     super.initState();
     _locale = window.locale;
     _setTextTheme();
   }
 
+  /*
+  设置语言和地区本地化内容
+   */
   void _setLocale(Locale locale) {
     setState(() {
       _locale = locale;
@@ -40,6 +55,9 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  /*
+  设置不同字体的样式
+   */
   void _setTextTheme() {
     if (_locale.languageCode == 'zh') {
       _textTheme = GoogleFonts.notoSansTextTheme().copyWith(
@@ -276,7 +294,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const SpecialThanksPage()),
                     );
                   },
-                  child: const Text("Thanks Page",),
+                  style: ButtonStyle(
+                    foregroundColor: WidgetStateProperty.all(Colors.green),
+                  ),
+                  child: Text(S.of(context).specialthanks),
                 )
               ]
           ),

@@ -5,7 +5,7 @@
   "timeRemaining": "残り時間: ",
   "chooseLanguage": "言語を選択",
   "appName": "スクールバスタイム",
-  "version": "バージョン: beta 0.0.1",
+  "version": "バージョン: Beta 0.0.1",
   "designedBy": "Designed by Jameswu in Fukuyama",
   "english": "英語",
   "chinese": "中国語",
@@ -14,6 +14,7 @@
   "location1":"松永",
   "location2":"福大",
   "jock": "工事中",
+  "specialthanks": "特別感謝",
   "@title": {
     "description": "アプリケーションのタイトル"
   },
