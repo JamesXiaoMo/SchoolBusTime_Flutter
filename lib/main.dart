@@ -8,6 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 import 'schedule_handle.dart';
 import 'specialthanksPage.dart';
+import 'package:http/http.dart' as http;
 
 
 /*
@@ -225,9 +226,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return '$hoursStr:$minutesStr:$secondsStr';
   }
+// https://www.wuyungang.net/schoolbustimejson
+  //assets/Bus_Schedule_V.24.7.20.json
+  // Future<void> loadJSON() async {
+  //   jsonString = await rootBundle.loadString("https://www.wuyungang.net/schoolbustimejson");
+  // }
 
   Future<void> loadJSON() async {
-    jsonString = await rootBundle.loadString("assets/Bus_Schedule_V.24.7.20.json");
+    // 发起HTTP GET请求
+    final response = await http.get(Uri.parse("https://wuyungang.net/Bus_Schedule.json"));
+
+    if (response.statusCode == 200) {
+      // 成功获取到数据，解码JSON
+      setState(() {
+        jsonString = response.body;  // 原始JSON字符串
+      });
+    } else {
+      // 请求失败，处理错误
+      throw Exception("Failed to load JSON");
+    }
   }
 
   @override
