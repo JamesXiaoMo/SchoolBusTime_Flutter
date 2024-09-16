@@ -46,6 +46,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "timeRemaining":
             MessageLookupByLibrary.simpleMessage("Time remaining: "),
         "title": MessageLookupByLibrary.simpleMessage("School Bus Time"),
-        "version": MessageLookupByLibrary.simpleMessage("Version: 2.0.0")
+        "version": MessageLookupByLibrary.simpleMessage("Version: 2.1.0")
       };
 }
