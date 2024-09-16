@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -68,6 +67,7 @@ class _MyAppState extends State<MyApp> {
         bodyLarge: GoogleFonts.notoSans(fontSize: 24.0, fontWeight: FontWeight.w600),
         bodyMedium: GoogleFonts.notoSans(fontSize: 18.0, fontWeight: FontWeight.w600),
         labelLarge: GoogleFonts.notoSans(fontSize: 14.0),
+        labelMedium: GoogleFonts.notoSans(fontSize: 36.0, fontWeight: FontWeight.w700)
       );
 
     } else if (_locale.languageCode == 'ja') {
@@ -78,6 +78,7 @@ class _MyAppState extends State<MyApp> {
         bodyLarge: GoogleFonts.notoSans(fontSize: 24.0, fontWeight: FontWeight.w600),
         bodyMedium: GoogleFonts.notoSans(fontSize: 18.0, fontWeight: FontWeight.w600),
         labelLarge: GoogleFonts.notoSans(fontSize: 14.0),
+        labelMedium: GoogleFonts.notoSans(fontSize: 22.0, fontWeight: FontWeight.w700)
       );;
     } else {
       _textTheme = GoogleFonts.oswaldTextTheme().copyWith(
@@ -87,6 +88,7 @@ class _MyAppState extends State<MyApp> {
         bodyLarge: GoogleFonts.notoSans(fontSize: 20.0, fontWeight: FontWeight.w600),
         bodyMedium: GoogleFonts.notoSans(fontSize: 18.0, fontWeight: FontWeight.w600),
         labelLarge: GoogleFonts.notoSans(fontSize: 14.0),
+        labelMedium: GoogleFonts.notoSans(fontSize: 18.0, fontWeight: FontWeight.w700)
       );;
     }
   }
@@ -138,11 +140,13 @@ class _MyHomePageState extends State<MyHomePage> {
   List<int> weekendsUTM = [];
   int? _selectedValue;
   int nextBus = 0;
+  int operationCode = 0;
   int intervalTime = 1;
   int countDown = 0;
   String nextBusStr = "";
   String countDownStr = "";
   String _selectedLanguage = window.locale.languageCode;
+  bool isNextBus = true;
 
   late Timer _timer;
 
@@ -158,60 +162,119 @@ class _MyHomePageState extends State<MyHomePage> {
       workdaysUTM = sh.workdaysUTM;
       weekendsMTU = sh.weekendsMTU;
       weekendsUTM = sh.weekendsUTM;
-      setState(() {});
     });
     _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       updateData();
       setState(() {
         nextBusStr = secToStr(nextBus);
-        countDownStr = secToStr(countDown);
+        countDownStr = countdownToStr(countDown);
       });
     });
   }
 
+  // void updateData() {
+  //   final now = DateTime.now();
+  //   int nowSec = now.hour * 3600 + now.minute * 60 + now.second;
+  //   if (_selectedValue == 1) {
+  //     if (now.weekday == 6 || now.weekday == 7) {
+  //       for (int i = 0; i < weekendsMTU.length; i++) {
+  //         if (0 <= (i + operationCode) && (i + operationCode) < weekendsMTU.length){
+  //           if (weekendsMTU[i] > nowSec) {
+  //             nextBus = weekendsMTU[i + operationCode];
+  //             intervalTime = i + operationCode > 0 ? weekendsMTU[i + operationCode] - weekendsMTU[i + operationCode - 1] : weekendsMTU[i + operationCode];
+  //             countDown = weekendsMTU[i + operationCode] - nowSec;
+  //             break;
+  //           }
+  //         }else{
+  //           operationCode = (i + operationCode) < 0 ? operationCode + 1 : weekendsMTU.length - 1;
+  //         }
+  //       }
+  //     } else {
+  //       for (int i = 0; i < workdaysMTU.length; i++) {
+  //         print(i + operationCode);
+  //         if (0 <= (i + operationCode) && (i + operationCode) < workdaysMTU.length){
+  //           if (workdaysMTU[i] > nowSec) {
+  //             nextBus = workdaysMTU[i + operationCode];
+  //             intervalTime = i + operationCode > 0 ? workdaysMTU[i + operationCode] - workdaysMTU[i + operationCode - 1] : workdaysMTU[i + operationCode];
+  //             countDown = nextBus - nowSec;
+  //             break;
+  //           }
+  //         }else{
+  //           print("超出范围");
+  //           operationCode = (i + operationCode) < 0 ? operationCode + 1 : workdaysMTU.length - 1;
+  //         }
+  //       }
+  //     }
+  //   } else {
+  //     if (now.weekday == 6 || now.weekday == 7) {
+  //       for (int i = 0; i < weekendsUTM.length; i++) {
+  //         if (0 <= (i + operationCode) && (i + operationCode) < weekendsUTM.length){
+  //           if (weekendsUTM[i] > nowSec) {
+  //             nextBus = weekendsUTM[i];
+  //             intervalTime = i + operationCode > 0 ? weekendsUTM[i] - weekendsUTM[i - 1] : weekendsUTM[i];
+  //             countDown = nextBus - nowSec;
+  //             break;
+  //           }
+  //         }else{
+  //           operationCode = (i + operationCode) < 0 ? operationCode + 1 : weekendsUTM.length - 1;
+  //         }
+  //       }
+  //     } else {
+  //       for (int i = 0; i < workdaysUTM.length; i++) {
+  //         if (0 <= (i + operationCode) && (i + operationCode) < workdaysUTM.length){
+  //           if (workdaysUTM[i] > nowSec) {
+  //             nextBus = workdaysUTM[i];
+  //             intervalTime = i > 0 ? workdaysUTM[i] - workdaysUTM[i - 1] : workdaysUTM[i];
+  //             countDown = nextBus - nowSec;
+  //             break;
+  //           }
+  //         }else{
+  //           operationCode = (i + operationCode) < 0 ? operationCode + 1 : workdaysUTM.length - 1;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
   void updateData() {
     final now = DateTime.now();
     int nowSec = now.hour * 3600 + now.minute * 60 + now.second;
+    int index = 0;
+
+    List<int> busTimes; // 用于存储当前选择的公交时间表
+
+    // 根据条件选择不同的时间表
     if (_selectedValue == 1) {
       if (now.weekday == 6 || now.weekday == 7) {
-        for (int i = 0; i < weekendsMTU.length; i++) {
-          if (weekendsMTU[i] > nowSec) {
-            nextBus = weekendsMTU[i];
-            intervalTime = i > 0 ? weekendsMTU[i] - weekendsMTU[i - 1] : weekendsMTU[i];
-            countDown = weekendsMTU[i] - nowSec;
-            break;
-          }
-        }
+        busTimes = weekendsMTU;
       } else {
-        for (int i = 0; i < workdaysMTU.length; i++) {
-          if (workdaysMTU[i] > nowSec) {
-            nextBus = workdaysMTU[i];
-            intervalTime = i > 0 ? workdaysMTU[i] - workdaysMTU[i - 1] : workdaysMTU[i];
-            countDown = nextBus - nowSec;
-            break;
-          }
-        }
+        busTimes = workdaysMTU;
       }
     } else {
       if (now.weekday == 6 || now.weekday == 7) {
-        for (int i = 0; i < weekendsUTM.length; i++) {
-          if (weekendsUTM[i] > nowSec) {
-            nextBus = weekendsUTM[i];
-            intervalTime = i > 0 ? weekendsUTM[i] - weekendsUTM[i - 1] : weekendsUTM[i];
-            countDown = nextBus - nowSec;
-            break;
-          }
-        }
+        busTimes = weekendsUTM;
       } else {
-        for (int i = 0; i < workdaysUTM.length; i++) {
-          if (workdaysUTM[i] > nowSec) {
-            nextBus = workdaysUTM[i];
-            intervalTime = i > 0 ? workdaysUTM[i] - workdaysUTM[i - 1] : workdaysUTM[i];
-            countDown = nextBus - nowSec;
-            break;
-          }
-        }
+        busTimes = workdaysUTM;
       }
+    }
+
+    // 遍历选择的公交时间表
+    for (int i = 0; i < busTimes.length; i++) {
+      if (busTimes[i] > nowSec){
+        isNextBus = true;
+        index = i;
+        break;
+      }else{
+        isNextBus = false;
+      }
+    }
+    if (operationCode + index >= 0 && operationCode + index < busTimes.length){
+      nextBus = busTimes[index + operationCode];
+      intervalTime = index + operationCode > 0 ? busTimes[index + operationCode] - busTimes[index + operationCode - 1] : weekendsMTU[index + operationCode];
+      countDown = busTimes[index + operationCode] - nowSec;
+    }else if(operationCode + index < 0){
+      operationCode = operationCode + 1;
+    }else if(operationCode + index >= busTimes.length){
+      operationCode = operationCode - 1;
     }
   }
 
@@ -226,11 +289,32 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return '$hoursStr:$minutesStr:$secondsStr';
   }
-// https://www.wuyungang.net/schoolbustimejson
-  //assets/Bus_Schedule_V.24.7.20.json
-  // Future<void> loadJSON() async {
-  //   jsonString = await rootBundle.loadString("https://www.wuyungang.net/schoolbustimejson");
-  // }
+
+  String countdownToStr(int sec) {
+    bool isNegative = false;
+    sec < 0 ? isNegative = true : isNegative = false;
+
+    //debug
+    // print("RAW: $sec isNegative: $isNegative");
+
+    sec = isNegative == true ? sec * -1 : sec * 1;
+    int hours = sec ~/ 3600;
+    int minutes = (sec % 3600) ~/ 60;
+    int seconds = sec % 60;
+
+    //debug
+    // print("data: $sec hour:$hours min:$minutes sec:$seconds");
+
+    String hoursStr = hours > 9 ? '$hours' : '0$hours';
+    String minutesStr = minutes > 9 ? '$minutes' : '0$minutes';
+    String secondsStr = seconds > 9 ? '$seconds' : '0$seconds';
+
+    String result = "";
+    result = isNegative == true
+        ? "-$hoursStr:$minutesStr:$secondsStr"
+        : "$hoursStr:$minutesStr:$secondsStr";
+    return result;
+  }
 
   Future<void> loadJSON() async {
     // 发起HTTP GET请求
@@ -249,7 +333,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
+    // final double screenWidth = MediaQuery.of(context).size.width;
     List<Widget> locations = <Widget>[
       Text(S.of(context).location1, style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400)),
       Text(S.of(context).location2, style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
@@ -312,7 +396,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     );
                   },
                   style: ButtonStyle(
-                    foregroundColor: WidgetStateProperty.all(Colors.green),
+                    foregroundColor: WidgetStateProperty.all(const Color.fromRGBO(102, 187, 106, 1)),
                   ),
                   child: Text(S.of(context).specialthanks),
                 )
@@ -324,6 +408,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               SizedBox(
                 width: (MediaQuery.of(context).size.width) * 0.95,
                 child: Card(
@@ -344,21 +429,38 @@ class _MyHomePageState extends State<MyHomePage> {
                         "⏳${S.of(context).timeRemaining}",
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
-                      Text(
-                        countDownStr,
-                        style: Theme.of(context).textTheme.headlineLarge,
+                      Visibility(
+                          visible: isNextBus,
+                          child: Text(
+                            countDownStr,
+                            style: Theme.of(context).textTheme.headlineLarge,
+                          ),
+                      ),
+                      Visibility(
+                        visible: isNextBus == false ? true : false,
+                        child:
+                          Center(
+                            child: Text(
+                              S.of(context).noMoreBus,
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ),
+                          )
                       ),
                       const SizedBox(height: 20),
                       SizedBox(
                         height: 30,
                         width: MediaQuery.of(context).size.width * 0.85,
-                        child: FAProgressBar(
-                          maxValue: 100,
-                          changeColorValue: 25,
-                          changeProgressColor: Colors.green,
-                          currentValue: (countDown / intervalTime * 100).toDouble(),
-                          displayText: '%',
-                        ),
+                        child:
+                        Visibility(
+                          visible: operationCode == 0 ? true : false,
+                          child: FAProgressBar(
+                            maxValue: 100,
+                            changeColorValue: 25,
+                            changeProgressColor: Colors.green,
+                            currentValue: (countDown / intervalTime * 100).toDouble(),
+                            displayText: '%',
+                          ),
+                        )
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.85,
@@ -371,28 +473,89 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       SizedBox(
-                        child: ToggleButtons(
-                          onPressed: (int index){
-                            setState(() {
-                              for(int i = 0; i < _selectedLocation.length; i++){
-                                _selectedLocation[i] = i == index;
-                              }
-                              _selectedLocation[0] == true ? _selectedValue = 1 : _selectedValue = 2;
-                            });
-                          },
-                          borderRadius: const BorderRadius.all(Radius.circular(8)),
-                          isSelected: _selectedLocation,
-                          selectedBorderColor: Colors.white,
-                          selectedColor: Colors.white,
-                          fillColor: Colors.green[400],
-                          color: Colors.green[600],
-                          constraints: BoxConstraints(
-                            minHeight: 40,
-                            minWidth: (MediaQuery.of(context).size.width) * 0.425,
-                          ),
-                          children: locations,
+                        child: 
+                            Column(
+                              children: [
+                                ToggleButtons(
+                                  onPressed: (int index){
+                                    setState(() {
+                                      for(int i = 0; i < _selectedLocation.length; i++){
+                                        _selectedLocation[i] = i == index;
+                                      }
+                                      _selectedLocation[0] == true ? _selectedValue = 1 : _selectedValue = 2;
+                                    });
+                                  },
+                                  borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                  isSelected: _selectedLocation,
+                                  selectedBorderColor: Colors.white,
+                                  selectedColor: Colors.white,
+                                  fillColor: Colors.green[400],
+                                  color: Colors.green[600],
+                                  constraints: BoxConstraints(
+                                    minHeight: 40,
+                                    minWidth: (MediaQuery.of(context).size.width) * 0.425,
+                                  ),
+                                  children: locations,
+                                ),
+                              ],
+                            )
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.85,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child:
+                          Row(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {setState(() {operationCode = operationCode - 1;});},
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  backgroundColor: const Color.fromRGBO(102, 187, 106, 1),
+                                  foregroundColor: Colors.white,
+                                  fixedSize: Size(MediaQuery.of(context).size.width * 0.27, MediaQuery.of(context).size.height * 0.03)
+                                ),
+                                child: Text(
+                                  S.of(context).pre,
+                                ),
+                              ),
+                              SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
+                              ElevatedButton(
+                                  onPressed: () {setState(() {operationCode = 0;});},
+                                  style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10)
+                                      ),
+                                      backgroundColor: const Color.fromRGBO(102, 187, 106, 1),
+                                      foregroundColor: Colors.white,
+                                      fixedSize: Size(MediaQuery.of(context).size.width * 0.29, MediaQuery.of(context).size.height * 0.03)
+                                  ),
+                                  child: Text(
+                                    S.of(context).now,
+                                  ),
+                              ),
+                              SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
+                              ElevatedButton(
+                                  onPressed: () {setState(() {operationCode = operationCode + 1;});},
+                                  style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10)
+                                      ),
+                                      backgroundColor: const Color.fromRGBO(102, 187, 106, 1),
+                                      foregroundColor: Colors.white,
+                                      fixedSize: Size(MediaQuery.of(context).size.width * 0.27, MediaQuery.of(context).size.height * 0.03)
+                                  ),
+                                  child: Text(
+                                    S.of(context).next,
+                                  ),
+                              ),
+                            ],
+                          )
                         ),
-                      )
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.01)
                     ],
                   ),
                 ),

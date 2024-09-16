@@ -34,7 +34,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "location2": MessageLookupByLibrary.simpleMessage("福大"),
         "locationSelection":
             MessageLookupByLibrary.simpleMessage("どこから乗りたいですか？"),
-        "nextBusTime": MessageLookupByLibrary.simpleMessage("次のスクールバスの出発時間: "),
+        "next": MessageLookupByLibrary.simpleMessage("一本後"),
+        "nextBusTime": MessageLookupByLibrary.simpleMessage("スクールバスの出発時間: "),
+        "noMoreBus": MessageLookupByLibrary.simpleMessage("スクールバスの運行時間を超過した"),
+        "now": MessageLookupByLibrary.simpleMessage("現在"),
+        "pre": MessageLookupByLibrary.simpleMessage("一本前"),
         "specialthanks": MessageLookupByLibrary.simpleMessage("特別感謝"),
         "timeRemaining": MessageLookupByLibrary.simpleMessage("残り時間: "),
         "title": MessageLookupByLibrary.simpleMessage("スクールバスタイム"),

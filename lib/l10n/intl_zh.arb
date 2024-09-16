@@ -1,7 +1,7 @@
 {
   "@@locale": "zh",
   "title": "校车时间",
-  "nextBusTime": "下一班校车发车时间: ",
+  "nextBusTime": "校车发车时间: ",
   "timeRemaining": "剩余时间: ",
   "chooseLanguage": "选择语言",
   "appName": "校车时间",
@@ -15,6 +15,10 @@
   "location2":"福山大",
   "jock": "正在施工",
   "specialthanks": "特别鸣谢",
+  "pre": "上一班",
+  "now": "当前",
+  "next": "下一班",
+  "noMoreBus": "超出校车运营时间",
   "@title": {
     "description": "应用程序的标题"
   },

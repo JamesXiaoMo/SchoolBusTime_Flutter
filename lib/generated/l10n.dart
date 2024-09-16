@@ -60,10 +60,10 @@ class S {
     );
   }
 
-  /// `Next school bus departure time: `
+  /// `School bus departure time: `
   String get nextBusTime {
     return Intl.message(
-      'Next school bus departure time: ',
+      'School bus departure time: ',
       name: 'nextBusTime',
       desc: 'Label for the next bus departure time',
       args: [],
@@ -195,6 +195,46 @@ class S {
     return Intl.message(
       'Special thanks',
       name: 'specialthanks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pre`
+  String get pre {
+    return Intl.message(
+      'Pre',
+      name: 'pre',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Now`
+  String get now {
+    return Intl.message(
+      'Now',
+      name: 'now',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exceeding school bus operating hours`
+  String get noMoreBus {
+    return Intl.message(
+      'Exceeding school bus operating hours',
+      name: 'noMoreBus',
       desc: '',
       args: [],
     );

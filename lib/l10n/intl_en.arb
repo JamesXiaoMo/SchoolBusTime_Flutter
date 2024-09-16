@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
   "title": "School Bus Time",
-  "nextBusTime": "Next school bus departure time: ",
+  "nextBusTime": "School bus departure time: ",
   "timeRemaining": "Time remaining: ",
   "chooseLanguage": "Choose your language",
   "appName": "School Bus Time",
@@ -15,6 +15,10 @@
   "location2":"University",
   "jock": "Under Construction",
   "specialthanks": "Special thanks",
+  "pre": "Pre",
+  "now": "Now",
+  "next": "Next",
+  "noMoreBus": "Exceeding school bus operating hours",
   "@title": {
     "description": "The title of the application"
   },

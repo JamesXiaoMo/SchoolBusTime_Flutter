@@ -1,7 +1,7 @@
 {
   "@@locale": "ja",
   "title": "スクールバスタイム",
-  "nextBusTime": "次のスクールバスの出発時間: ",
+  "nextBusTime": "スクールバスの出発時間: ",
   "timeRemaining": "残り時間: ",
   "chooseLanguage": "言語を選択",
   "appName": "スクールバスタイム",
@@ -15,6 +15,10 @@
   "location2":"福大",
   "jock": "工事中",
   "specialthanks": "特別感謝",
+  "pre": "一本前",
+  "now": "現在",
+  "next": "一本後",
+  "noMoreBus": "スクールバスの運行時間を超過した",
   "@title": {
     "description": "アプリケーションのタイトル"
   },
