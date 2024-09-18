@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 import 'schedule_handle.dart';
 import 'specialthanksPage.dart';
+import 'schoolBusTablePage.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -399,6 +400,22 @@ class _MyHomePageState extends State<MyHomePage> {
                     foregroundColor: WidgetStateProperty.all(const Color.fromRGBO(102, 187, 106, 1)),
                   ),
                   child: Text(S.of(context).specialthanks),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SchoolBusTablePage(
+                      workdaysMTU: workdaysMTU,
+                      weekendsMTU: weekendsMTU,
+                      workdaysUTM: workdaysUTM,
+                      weekendsUTM: weekendsUTM,
+                    )),
+                    );
+                  },
+                  style: ButtonStyle(
+                    foregroundColor: WidgetStateProperty.all(const Color.fromRGBO(102, 187, 106, 1)),
+                    alignment: Alignment.center
+                  ),
+                  child: Text(S.of(context).schoolBusTimeTable),
                 )
               ]
           ),
@@ -473,7 +490,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       SizedBox(
-                        child: 
+                        child:
                             Column(
                               children: [
                                 ToggleButtons(

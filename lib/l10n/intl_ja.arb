@@ -19,6 +19,9 @@
   "now": "現在",
   "next": "一本後",
   "noMoreBus": "スクールバスの運行時間を超過した",
+  "schoolBusTimeTable": "スクールバスの時刻表",
+  "workday": "平日",
+  "weekend": "週末",
   "@title": {
     "description": "アプリケーションのタイトル"
   },

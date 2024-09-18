@@ -42,10 +42,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Exceeding school bus operating hours"),
         "now": MessageLookupByLibrary.simpleMessage("Now"),
         "pre": MessageLookupByLibrary.simpleMessage("Pre"),
+        "schoolBusTimeTable":
+            MessageLookupByLibrary.simpleMessage("School Bus Schedule"),
         "specialthanks": MessageLookupByLibrary.simpleMessage("Special thanks"),
         "timeRemaining":
             MessageLookupByLibrary.simpleMessage("Time remaining: "),
         "title": MessageLookupByLibrary.simpleMessage("School Bus Time"),
-        "version": MessageLookupByLibrary.simpleMessage("Version: 2.1.0")
+        "version": MessageLookupByLibrary.simpleMessage("Version: 2.1.0"),
+        "weekend": MessageLookupByLibrary.simpleMessage("Weekend"),
+        "workday": MessageLookupByLibrary.simpleMessage("Workday")
       };
 }

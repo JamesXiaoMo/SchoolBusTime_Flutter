@@ -39,9 +39,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "noMoreBus": MessageLookupByLibrary.simpleMessage("スクールバスの運行時間を超過した"),
         "now": MessageLookupByLibrary.simpleMessage("現在"),
         "pre": MessageLookupByLibrary.simpleMessage("一本前"),
+        "schoolBusTimeTable":
+            MessageLookupByLibrary.simpleMessage("スクールバスの時刻表"),
         "specialthanks": MessageLookupByLibrary.simpleMessage("特別感謝"),
         "timeRemaining": MessageLookupByLibrary.simpleMessage("残り時間: "),
         "title": MessageLookupByLibrary.simpleMessage("スクールバスタイム"),
-        "version": MessageLookupByLibrary.simpleMessage("バージョン: 2.1.0")
+        "version": MessageLookupByLibrary.simpleMessage("バージョン: 2.1.0"),
+        "weekend": MessageLookupByLibrary.simpleMessage("週末"),
+        "workday": MessageLookupByLibrary.simpleMessage("平日")
       };
 }

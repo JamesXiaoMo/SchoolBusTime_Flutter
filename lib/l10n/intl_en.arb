@@ -19,6 +19,9 @@
   "now": "Now",
   "next": "Next",
   "noMoreBus": "Exceeding school bus operating hours",
+  "schoolBusTimeTable": "School Bus Schedule",
+  "workday": "Workday",
+  "weekend": "Weekend",
   "@title": {
     "description": "The title of the application"
   },

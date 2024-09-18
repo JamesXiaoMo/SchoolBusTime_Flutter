@@ -38,9 +38,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "noMoreBus": MessageLookupByLibrary.simpleMessage("超出校车运营时间"),
         "now": MessageLookupByLibrary.simpleMessage("当前"),
         "pre": MessageLookupByLibrary.simpleMessage("上一班"),
+        "schoolBusTimeTable": MessageLookupByLibrary.simpleMessage("校车时间表"),
         "specialthanks": MessageLookupByLibrary.simpleMessage("特别鸣谢"),
         "timeRemaining": MessageLookupByLibrary.simpleMessage("剩余时间: "),
         "title": MessageLookupByLibrary.simpleMessage("校车时间"),
-        "version": MessageLookupByLibrary.simpleMessage("版本: 2.1.0")
+        "version": MessageLookupByLibrary.simpleMessage("版本: 2.1.0"),
+        "weekend": MessageLookupByLibrary.simpleMessage("周末"),
+        "workday": MessageLookupByLibrary.simpleMessage("工作日")
       };
 }

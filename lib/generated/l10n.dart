@@ -239,6 +239,36 @@ class S {
       args: [],
     );
   }
+
+  /// `School Bus Schedule`
+  String get schoolBusTimeTable {
+    return Intl.message(
+      'School Bus Schedule',
+      name: 'schoolBusTimeTable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workday`
+  String get workday {
+    return Intl.message(
+      'Workday',
+      name: 'workday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Weekend`
+  String get weekend {
+    return Intl.message(
+      'Weekend',
+      name: 'weekend',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

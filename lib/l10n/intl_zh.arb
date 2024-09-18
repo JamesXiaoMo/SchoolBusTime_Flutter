@@ -19,6 +19,9 @@
   "now": "当前",
   "next": "下一班",
   "noMoreBus": "超出校车运营时间",
+  "schoolBusTimeTable": "校车时间表",
+  "workday": "工作日",
+  "weekend": "周末",
   "@title": {
     "description": "应用程序的标题"
   },
