@@ -32,7 +32,7 @@ class MyApp extends StatefulWidget {
 MyApp的状态
  */
 class _MyAppState extends State<MyApp> {
-  Locale _locale = window.locale;
+  Locale _locale = PlatformDispatcher.instance.locale;
   late TextTheme _textTheme;
 
   @override
@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
    */
   void initState() {
     super.initState();
-    _locale = window.locale;
+    _locale = PlatformDispatcher.instance.locale;
     _setTextTheme();
   }
 
@@ -96,7 +96,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
       locale: _locale,
       supportedLocales: S.delegate.supportedLocales,
@@ -146,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int countDown = 0;
   String nextBusStr = "";
   String countDownStr = "";
-  String _selectedLanguage = window.locale.languageCode;
+  String _selectedLanguage = PlatformDispatcher.instance.locale.languageCode;
   bool isNextBus = true;
 
   late Timer _timer;
@@ -171,6 +170,12 @@ class _MyHomePageState extends State<MyHomePage> {
         countDownStr = countdownToStr(countDown);
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();  // 确保销毁时计时器被取消
+    super.dispose();
   }
 
   // void updateData() {
@@ -334,7 +339,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // final double screenWidth = MediaQuery.of(context).size.width;
     List<Widget> locations = <Widget>[
       Text(S.of(context).location1, style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400)),
       Text(S.of(context).location2, style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))

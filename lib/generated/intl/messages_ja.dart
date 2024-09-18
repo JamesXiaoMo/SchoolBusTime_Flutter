@@ -40,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "now": MessageLookupByLibrary.simpleMessage("現在"),
         "pre": MessageLookupByLibrary.simpleMessage("一本前"),
         "schoolBusTimeTable":
-            MessageLookupByLibrary.simpleMessage("スクールバスの時刻表"),
+            MessageLookupByLibrary.simpleMessage("スクールバスの\n時刻表"),
         "specialthanks": MessageLookupByLibrary.simpleMessage("特別感謝"),
         "timeRemaining": MessageLookupByLibrary.simpleMessage("残り時間: "),
         "title": MessageLookupByLibrary.simpleMessage("スクールバスタイム"),

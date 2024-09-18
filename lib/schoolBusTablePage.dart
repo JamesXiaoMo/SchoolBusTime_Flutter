@@ -55,6 +55,8 @@ class _SchoolBusTablePageState extends State<SchoolBusTablePage> with SingleTick
         backgroundColor: Colors.green,
         bottom: TabBar(
           controller: _tabController,
+          labelColor: Colors.black,
+          indicatorColor: Colors.green,
           tabs: <Widget>[
             Tab(
               text: S.of(context).workday,
