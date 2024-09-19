@@ -22,6 +22,7 @@
   "schoolBusTimeTable": "校车时间表",
   "workday": "工作日",
   "weekend": "周末",
+
   "@title": {
     "description": "应用程序的标题"
   },
