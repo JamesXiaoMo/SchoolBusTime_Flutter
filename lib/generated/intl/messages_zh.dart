@@ -42,7 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "specialthanks": MessageLookupByLibrary.simpleMessage("特别鸣谢"),
         "timeRemaining": MessageLookupByLibrary.simpleMessage("剩余时间: "),
         "title": MessageLookupByLibrary.simpleMessage("校车时间"),
-        "version": MessageLookupByLibrary.simpleMessage("版本: 2.1.0"),
+        "version": MessageLookupByLibrary.simpleMessage("版本: 2.2.0"),
         "weekend": MessageLookupByLibrary.simpleMessage("周末"),
         "workday": MessageLookupByLibrary.simpleMessage("工作日")
       };

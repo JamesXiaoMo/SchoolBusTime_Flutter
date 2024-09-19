@@ -44,7 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "specialthanks": MessageLookupByLibrary.simpleMessage("特別感謝"),
         "timeRemaining": MessageLookupByLibrary.simpleMessage("残り時間: "),
         "title": MessageLookupByLibrary.simpleMessage("スクールバスタイム"),
-        "version": MessageLookupByLibrary.simpleMessage("バージョン: 2.1.0"),
+        "version": MessageLookupByLibrary.simpleMessage("バージョン: 2.2.0"),
         "weekend": MessageLookupByLibrary.simpleMessage("週末"),
         "workday": MessageLookupByLibrary.simpleMessage("平日")
       };

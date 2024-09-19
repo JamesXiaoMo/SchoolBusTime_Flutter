@@ -80,7 +80,7 @@ class _MyAppState extends State<MyApp> {
         bodyMedium: GoogleFonts.notoSans(fontSize: 18.0, fontWeight: FontWeight.w600),
         labelLarge: GoogleFonts.notoSans(fontSize: 14.0),
         labelMedium: GoogleFonts.notoSans(fontSize: 22.0, fontWeight: FontWeight.w700)
-      );;
+      );
     } else {
       _textTheme = GoogleFonts.oswaldTextTheme().copyWith(
         headlineLarge: GoogleFonts.notoSans(fontSize: 54.0, fontWeight: FontWeight.bold),
@@ -90,7 +90,7 @@ class _MyAppState extends State<MyApp> {
         bodyMedium: GoogleFonts.notoSans(fontSize: 18.0, fontWeight: FontWeight.w600),
         labelLarge: GoogleFonts.notoSans(fontSize: 14.0),
         labelMedium: GoogleFonts.notoSans(fontSize: 18.0, fontWeight: FontWeight.w700)
-      );;
+      );
     }
   }
 

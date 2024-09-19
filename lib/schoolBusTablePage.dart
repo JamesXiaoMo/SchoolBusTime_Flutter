@@ -103,9 +103,9 @@ class _SchoolBusTablePageState extends State<SchoolBusTablePage> with SingleTick
           SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: DataTable(
-              columns: const <DataColumn>[
-                DataColumn(label: Text('松永->大学')),
-                DataColumn(label: Text('大学->松永')),
+              columns: <DataColumn>[
+                DataColumn(label: Text('${S.of(context).location1}->${S.of(context).location2}')),
+                DataColumn(label: Text('${S.of(context).location2}->${S.of(context).location1}')),
               ],
               rows: List<DataRow>.generate(
                 maxWeekendsLength,
