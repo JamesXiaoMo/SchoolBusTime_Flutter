@@ -35,6 +35,7 @@ dependencies:
   google_fonts: ^6.2.1
   flutter_animation_progress_bar:
   path_provider_foundation: ^2.4.0
+  share_plus:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -43,7 +44,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl:
-  # dart run intl_utils:generate
+# dart run intl_utils:generate
 
 
 flutter_icons:

@@ -8,6 +8,7 @@ import 'generated/l10n.dart';
 import 'schedule_handle.dart';
 import 'specialthanksPage.dart';
 import 'schoolBusTablePage.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -350,6 +351,17 @@ class _MyHomePageState extends State<MyHomePage> {
             widget.title,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
+          actions: [
+            IconButton(
+              icon: const Icon(
+                Icons.share,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Share.share('この素晴らしいアプリをダウンロードしてください:https://www.wuyungang.net/schoolbustime');
+              },
+            ),
+          ],
         ),
         drawer: Drawer(
           child: ListView(
