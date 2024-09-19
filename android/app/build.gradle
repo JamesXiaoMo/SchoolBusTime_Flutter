@@ -12,15 +12,10 @@ if (localPropertiesFile.exists()) {
     }
 }
 
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
-}
-
-def flutterVersionName = localProperties.getProperty('flutter.versionName')
-if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
-}
+//def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+//if (flutterVersionCode == null) {
+//    flutterVersionCode = '1'
+//}
 
 android {
     namespace "com.jameswu.schoolbustime"
@@ -57,6 +52,8 @@ android {
         applicationId "com.jameswu.schoolbustime"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
+//        versionCode flutterVersionCode.toInteger()  // 使用 flutterVersionCode
+//        versionName flutterVersionName
         versionCode 6
         versionName "2.2.0"
     }
