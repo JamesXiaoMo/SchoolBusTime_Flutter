@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "chinese": MessageLookupByLibrary.simpleMessage("中文"),
         "chooseLanguage": MessageLookupByLibrary.simpleMessage("选择语言"),
         "designedBy": MessageLookupByLibrary.simpleMessage(
-            "Designed by Jameswu in Fukuyama"),
+            "Designed by WUYUNGANG in Fukuyama"),
         "english": MessageLookupByLibrary.simpleMessage("英语"),
         "japanese": MessageLookupByLibrary.simpleMessage("日语"),
         "jock": MessageLookupByLibrary.simpleMessage("正在施工"),

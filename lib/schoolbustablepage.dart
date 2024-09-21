@@ -51,7 +51,10 @@ class _SchoolBusTablePageState extends State<SchoolBusTablePage> with SingleTick
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).schoolBusTimeTable),
+        title: Text(
+          S.of(context).schoolBusTimeTable,
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
         backgroundColor: Colors.green,
         bottom: TabBar(
           controller: _tabController,

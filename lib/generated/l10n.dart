@@ -110,10 +110,10 @@ class S {
     );
   }
 
-  /// `Designed by Jameswu in Fukuyama`
+  /// `Designed by WUYUNGANG in Fukuyama`
   String get designedBy {
     return Intl.message(
-      'Designed by Jameswu in Fukuyama',
+      'Designed by WUYUNGANG in Fukuyama',
       name: 'designedBy',
       desc: 'Design credit for the application',
       args: [],

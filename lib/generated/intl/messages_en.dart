@@ -27,7 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseLanguage":
             MessageLookupByLibrary.simpleMessage("Choose your language"),
         "designedBy": MessageLookupByLibrary.simpleMessage(
-            "Designed by Jameswu in Fukuyama"),
+            "Designed by WUYUNGANG in Fukuyama"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "japanese": MessageLookupByLibrary.simpleMessage("Japanese"),
         "jock": MessageLookupByLibrary.simpleMessage("Under Construction"),

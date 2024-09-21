@@ -7,8 +7,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 import 'schedule_handle.dart';
 import 'specialthanksPage.dart';
-import 'schoolBusTablePage.dart';
+import 'schoolbustablepage.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -148,6 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String countDownStr = "";
   String _selectedLanguage = PlatformDispatcher.instance.locale.languageCode;
   bool isNextBus = true;
+  final Uri coffeeUrl = Uri.parse("https://buymeacoffee.com/wuyungang");
 
   late Timer _timer;
 
@@ -353,12 +355,21 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           actions: [
             IconButton(
+                onPressed: () async {
+                  launchUrl(coffeeUrl);
+                },
+                icon: const Icon(
+                  Icons.coffee,
+                  color: Colors.black,
+                )
+            ),
+            IconButton(
               icon: const Icon(
                 Icons.share,
                 color: Colors.black,
               ),
               onPressed: () {
-                Share.share('この素晴らしいアプリをダウンロードしてください:https://www.wuyungang.net/schoolbustime');
+                Share.share('このアプリ、超便利！ぜひダウンロードしてね！:https://www.wuyungang.net/schoolbustime');
               },
             ),
           ],
@@ -415,7 +426,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: ButtonStyle(
                     foregroundColor: WidgetStateProperty.all(const Color.fromRGBO(102, 187, 106, 1)),
                   ),
-                  child: Text(S.of(context).specialthanks),
+                  child: Text(
+                    S.of(context).specialthanks,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -431,186 +445,192 @@ class _MyHomePageState extends State<MyHomePage> {
                     foregroundColor: WidgetStateProperty.all(const Color.fromRGBO(102, 187, 106, 1)),
                     alignment: Alignment.center
                   ),
-                  child: Text(S.of(context).schoolBusTimeTable),
+                  child: Text(
+                    S.of(context).schoolBusTimeTable,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
                 )
               ]
           ),
         ),
         body:
-        Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-              SizedBox(
-                width: (MediaQuery.of(context).size.width) * 0.95,
-                child: Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 5),
-                  elevation: 15.0,
-                  child: Column(
-                    children: [
-                      Text(
-                        "🚌${S.of(context).nextBusTime}",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Text(
-                        nextBusStr,
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
-                      const SizedBox(height: 20),
-                      Text(
-                        "⏳${S.of(context).timeRemaining}",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Visibility(
-                          visible: isNextBus,
-                          child: Text(
-                            countDownStr,
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                  SizedBox(
+                    width: (MediaQuery.of(context).size.width) * 0.95,
+                    child: Card(
+                      margin: const EdgeInsets.symmetric(horizontal: 5),
+                      elevation: 15.0,
+                      child: Column(
+                        children: [
+                          Text(
+                            "🚌${S.of(context).nextBusTime}",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          Text(
+                            nextBusStr,
                             style: Theme.of(context).textTheme.headlineLarge,
                           ),
-                      ),
-                      Visibility(
-                        visible: isNextBus == false ? true : false,
-                        child:
-                          Center(
+                          const SizedBox(height: 20),
+                          Text(
+                            "⏳${S.of(context).timeRemaining}",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          Visibility(
+                            visible: isNextBus,
                             child: Text(
-                              S.of(context).noMoreBus,
-                              style: Theme.of(context).textTheme.labelMedium,
+                              countDownStr,
+                              style: Theme.of(context).textTheme.headlineLarge,
                             ),
-                          )
-                      ),
-                      const SizedBox(height: 20),
-                      SizedBox(
-                        height: 30,
-                        width: MediaQuery.of(context).size.width * 0.85,
-                        child:
-                        Visibility(
-                          visible: operationCode == 0 ? true : false,
-                          child: FAProgressBar(
-                            maxValue: 100,
-                            changeColorValue: 25,
-                            changeProgressColor: Colors.green,
-                            currentValue: (countDown / intervalTime * 100).toDouble(),
-                            displayText: '%',
                           ),
-                        )
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.85,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "📍${S.of(context).locationSelection}",
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        child:
-                            Column(
-                              children: [
-                                ToggleButtons(
-                                  onPressed: (int index){
-                                    setState(() {
-                                      for(int i = 0; i < _selectedLocation.length; i++){
-                                        _selectedLocation[i] = i == index;
-                                      }
-                                      _selectedLocation[0] == true ? _selectedValue = 1 : _selectedValue = 2;
-                                    });
-                                  },
-                                  borderRadius: const BorderRadius.all(Radius.circular(8)),
-                                  isSelected: _selectedLocation,
-                                  selectedBorderColor: Colors.white,
-                                  selectedColor: Colors.white,
-                                  fillColor: Colors.green[400],
-                                  color: Colors.green[600],
-                                  constraints: BoxConstraints(
-                                    minHeight: 40,
-                                    minWidth: (MediaQuery.of(context).size.width) * 0.425,
-                                  ),
-                                  children: locations,
-                                ),
-                              ],
-                            )
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.85,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child:
-                          Row(
-                            children: [
-                              ElevatedButton(
-                                onPressed: () {setState(() {operationCode = operationCode - 1;});},
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)
-                                  ),
-                                  backgroundColor: const Color.fromRGBO(102, 187, 106, 1),
-                                  foregroundColor: Colors.white,
-                                  fixedSize: Size(MediaQuery.of(context).size.width * 0.27, MediaQuery.of(context).size.height * 0.03)
-                                ),
+                          Visibility(
+                              visible: isNextBus == false ? true : false,
+                              child:
+                              Center(
                                 child: Text(
-                                  S.of(context).pre,
+                                  S.of(context).noMoreBus,
+                                  style: Theme.of(context).textTheme.labelMedium,
                                 ),
+                              )
+                          ),
+                          const SizedBox(height: 20),
+                          SizedBox(
+                              height: 30,
+                              width: MediaQuery.of(context).size.width * 0.85,
+                              child:
+                              Visibility(
+                                visible: operationCode == 0 ? true : false,
+                                child: FAProgressBar(
+                                  maxValue: 100,
+                                  changeColorValue: 25,
+                                  changeProgressColor: Colors.green,
+                                  currentValue: (countDown / intervalTime * 100).toDouble(),
+                                  displayText: '%',
+                                ),
+                              )
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.85,
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "📍${S.of(context).locationSelection}",
+                                style: Theme.of(context).textTheme.bodyMedium,
                               ),
-                              SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
-                              ElevatedButton(
-                                  onPressed: () {setState(() {operationCode = 0;});},
-                                  style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10)
+                            ),
+                          ),
+                          SizedBox(
+                              child:
+                              Column(
+                                children: [
+                                  ToggleButtons(
+                                    onPressed: (int index){
+                                      setState(() {
+                                        for(int i = 0; i < _selectedLocation.length; i++){
+                                          _selectedLocation[i] = i == index;
+                                        }
+                                        _selectedLocation[0] == true ? _selectedValue = 1 : _selectedValue = 2;
+                                      });
+                                    },
+                                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                    isSelected: _selectedLocation,
+                                    selectedBorderColor: Colors.white,
+                                    selectedColor: Colors.white,
+                                    fillColor: Colors.green[400],
+                                    color: Colors.green[600],
+                                    constraints: BoxConstraints(
+                                      minHeight: 40,
+                                      minWidth: (MediaQuery.of(context).size.width) * 0.425,
+                                    ),
+                                    children: locations,
+                                  ),
+                                ],
+                              )
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.85,
+                            child: Align(
+                                alignment: Alignment.centerLeft,
+                                child:
+                                Row(
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {setState(() {operationCode = operationCode - 1;});},
+                                      style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10)
+                                          ),
+                                          backgroundColor: const Color.fromRGBO(102, 187, 106, 1),
+                                          foregroundColor: Colors.white,
+                                          fixedSize: Size(MediaQuery.of(context).size.width * 0.27, MediaQuery.of(context).size.height * 0.03)
                                       ),
-                                      backgroundColor: const Color.fromRGBO(102, 187, 106, 1),
-                                      foregroundColor: Colors.white,
-                                      fixedSize: Size(MediaQuery.of(context).size.width * 0.29, MediaQuery.of(context).size.height * 0.03)
-                                  ),
-                                  child: Text(
-                                    S.of(context).now,
-                                  ),
-                              ),
-                              SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
-                              ElevatedButton(
-                                  onPressed: () {setState(() {operationCode = operationCode + 1;});},
-                                  style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10)
+                                      child: Text(
+                                        S.of(context).pre,
                                       ),
-                                      backgroundColor: const Color.fromRGBO(102, 187, 106, 1),
-                                      foregroundColor: Colors.white,
-                                      fixedSize: Size(MediaQuery.of(context).size.width * 0.27, MediaQuery.of(context).size.height * 0.03)
-                                  ),
-                                  child: Text(
-                                    S.of(context).next,
-                                  ),
-                              ),
-                            ],
-                          )
-                        ),
+                                    ),
+                                    SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
+                                    ElevatedButton(
+                                      onPressed: () {setState(() {operationCode = 0;});},
+                                      style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10)
+                                          ),
+                                          backgroundColor: const Color.fromRGBO(102, 187, 106, 1),
+                                          foregroundColor: Colors.white,
+                                          fixedSize: Size(MediaQuery.of(context).size.width * 0.29, MediaQuery.of(context).size.height * 0.03)
+                                      ),
+                                      child: Text(
+                                        S.of(context).now,
+                                      ),
+                                    ),
+                                    SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
+                                    ElevatedButton(
+                                      onPressed: () {setState(() {operationCode = operationCode + 1;});},
+                                      style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10)
+                                          ),
+                                          backgroundColor: const Color.fromRGBO(102, 187, 106, 1),
+                                          foregroundColor: Colors.white,
+                                          fixedSize: Size(MediaQuery.of(context).size.width * 0.27, MediaQuery.of(context).size.height * 0.03)
+                                      ),
+                                      child: Text(
+                                        S.of(context).next,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                            ),
+                          ),
+                          SizedBox(height: MediaQuery.of(context).size.height * 0.01)
+                        ],
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.01)
-                    ],
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: (MediaQuery.of(context).size.width * 0.95),
-                child: Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 5),
-                  elevation: 15.0,
-                  child: Column(
-                    children: [
-                      Text(
-                        "⚠️${S.of(context).jock}",
-                        style: Theme.of(context).textTheme.bodyLarge,
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: (MediaQuery.of(context).size.width * 0.95),
+                    child: Card(
+                      margin: const EdgeInsets.symmetric(horizontal: 5),
+                      elevation: 15.0,
+                      child: Column(
+                        children: [
+                          Text(
+                            "⚠️${S.of(context).jock}",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
         )
     );
   }
