@@ -9,7 +9,10 @@
 
 ## 💪支持我们自己的力量
 你对我们的支持将会帮助我们更好的完善应用，所有捐赠将会用于项目的开发和服务器的租赁，请务必支持福山大学自己的力量。
-[![](/docs/yellow-button.png "Buy me a coffee.")][https://buymeacoffee.com/wuyungang]
+<a href="https://buymeacoffee.com/wuyungang" target="_blank">
+<img src="https://docs/yellow-button.png" alt="Buy me a coffee." width="200" />
+</a>
+
 
 ## ❤️关于我们
 我们是一个由福山大学的学生组建的小团队，我们并不代表福山大学官方，但是我们正在积极谋求和大学的合作。
